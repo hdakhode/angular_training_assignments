@@ -1,0 +1,11 @@
+<div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" 
+        data-toggle="dropdown" aria-haspopup="true"  (click)="toggle()">
+            {{dropdownHeader}}
+          </button>
+        <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" [ngClass]="isClicked ? 'show': ''">
+            <label *ngFor="let m of MenuSource; let i = index" class="dropdown-item" for="{{m}}_{{i}}">{{m}}
+                <input type="radio" id="{{m}}_{{i}}" name="dropp" value="{{m}}" (click)="onOptionSelectedEvent(m); toggle()" />
+            </label>           
+          </div>
+</div>
