@@ -1,0 +1,27 @@
+
+<input type="text" placeholder="search customer" [(ngModel)]="searchText"/>
+<select id="searchBy" [(ngModel)]="searchBy" class="select">
+    <option value="city" selected="true">City</option>
+    <option value="name">Name</option>
+</select>
+<br/>
+<input type="button" (click)="searchOrder()" value="Search"/>
+<input type="button" (click)="reset()" value="Reset"/>
+<div style="height: 20px;"></div>
+<table border="1" cellspacing="0" cellpadding="10%">
+    <thead>
+        <th>CustomerId</th>
+        <th>CustomerName</th>
+        <th>City</th>
+        <th>Email</th>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let customer of customers" (click)="searchOrder(customer.id)" style="cursor:pointer;">
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.city}}</td>
+            <td>{{customer.email}}</td>
+        </tr>
+        
+    </tbody>
+</table>

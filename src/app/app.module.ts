@@ -1,12 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/productcompopnent/app.product.component';
 import { ProductReactiveFormComponent } from './components/productreactiveformcompopnent/app.productreactiveform.component';
 import { TableDirectiveComponent } from './directives/table.component.directive';
-import { DropdownDirectiveComponent } from './directives/dropdown/dropdown.component.directive';
+import { SimpleElementComponent } from './litelementcomponents/app.simple.element.component';
+
+// import all LitElements from its path
+import './litelementapp/app.simpleelement.litelement';
+import { RadioListComponent } from './directives/app.rediolist.component';
+import { UtilityServiceComponent } from './components/utilityservicecomponent/app.utilityservice.component';
+import { DeptSenderComponent } from './components/masterdetailscommunication/app.deptsender.component';
+import { EmpReceiverComponent } from './components/masterdetailscommunication/app.empreceiver.component';
+import { OrdersComponent } from './components/orderscomponent/orders.component';
+import { CustomersComponent } from './components/cutomerscomponent/customers.component';
+
+
+
 
 // imports: array that imports all standard Angular moaulds and custom
 // extenal modules for the current NG App.
@@ -30,13 +42,20 @@ import { DropdownDirectiveComponent } from './directives/dropdown/dropdown.compo
     AppComponent, ProductComponent,
     ProductReactiveFormComponent,
     TableDirectiveComponent,
-    DropdownDirectiveComponent
+    SimpleElementComponent,
+    RadioListComponent,
+    UtilityServiceComponent,
+    DeptSenderComponent,
+    EmpReceiverComponent,
+    OrdersComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
     AppRoutingModule
   ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [ProductReactiveFormComponent]
+  bootstrap: [ CustomersComponent, OrdersComponent]
 })
 export class AppModule { }

@@ -1,0 +1,20 @@
+
+<table border="1" cellspacing="0" cellpadding="10%">
+    <thead>
+        <th>OrderId</th>
+        <th>OrderName</th>
+        <th>CustomerName</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let order of orders">
+            <td>{{order.id}}</td>
+            <td>{{order.name}}</td>
+            <td>{{order.customerId}}</td>
+            <td>{{order.quantity}}</td>
+            <td>{{order.amount}}</td>
+        </tr>
+        
+    </tbody>
+</table>
