@@ -1,2 +1,185 @@
-# angular_training_assignments
-Repository for angular training assignments
+Generate package.json using command
+
+- npm init -y
+- package.json
+  - dependencies
+    - Runtime Dependencies on Production
+      - Included in Production Build int the file 'vendor.js'
+      - external Dependencis of angular are Build into 'polyfills.js'
+      - Angular 7.0 +
+        - The vendor.js is merged and minified in the application production file
+          - main.js/app.js
+    - npm install --save <PACKAGE-NAME>
+  - devDependencies
+    - Used for dev/testing
+    - npm install --save-dev <PACKAGE-NAME>
+  - scripts
+    - Build/Test/Run the application
+
+<input type="text" id="txt" value="ABC"/> value is static
+--> value is HTML DOM attribute
+
+document.getElementById('txt').value = "PQR"; value is dynamic
+--> value is DOM property
+
+Attribuite + Property ==> Property Binding
+
+<input type="text" id="txt" [value]="<PUBLIC-MEMBER-FROM-COMPONENT>"/>
+[value], [href], [ckecked], [disabled]
+
+Event Binding
+<input type="button" (click)="<PUBLIC-METHOD-FROM-COMPONENT>"/>
+
+Property Binding + Event Binding ==> Two-Way Binding
+[(ngModel)]
+
+import FormsModule from @angular/forms in import array of NgModule applied on AppModule
+
+Interpolation AKA Exptression Binding, Read-Only binding of String Memebrs of Component to UI Element
+\*\*Note: Expression Binding will Auto-Transform the Members values into string
+Syntax -->
+{{<PUBLIC-PROPERTY-FROM-COMPONENT>}}
+
+============================================================================================================================================
+Angular Directives
+
+1. Reusable, Functional, Behavioral, UI Elements or Attributes
+2. 3 Types
+   1. Component Directive
+   2. Structural Directives
+      1. Add/Remove DOM Elements based on Conditions
+         1. \*ngFor --> Execure for..of loop on DOM
+         2. \*ngIf --> Execute if condition on DOM
+         3. \*ngSwich-ngSwitchCase
+   3. Attribute Directives
+      1. DOM Attribute
+
+========================================================================================================
+
+Day 2: Exercise
+
+1. Generate Delete Button for each row of Products table. Delete the row when the button is clicked
+2. Add Two radio button above the products table for Sort and Reverse. Sort/Revese the Products table by ProductName when the Sort/Reverse Radio button is clicked.
+3. Update the Product by selecting Product from Products table and show the updated back to the table.
+4. Add a search Textbox above the products table to search products based on ProductName / Category Name
+
+======================================================================
+HTML 5
+
+1. FormModel
+   1. Name/Value pair of all editable elements inside HTML 5 Form
+2. ngModel
+   1. Attribute with ngModelChanged Event, [(ngModel)]
+      1. Listen to the default event of HTML element, KeyUp event for the input:Text, trigger Change
+      2. ngModel read the current data in the element for the default property, input:Text, the 'value' property that will be changed
+      3. Trigger the ngModelChanged event
+         1. Read the current value and update it for the proeprty Binding with the UI element
+         2. This will update component
+         3. The component will update all propeties in it
+         4. The Updated property values will be send back to UI and UI is updated
+3. Angular Model-Driven-Forms aka Data-Driven-Forms --> Reactive Forms
+   1. Binding an Entity Class aka Model class directly to the HTML-Form OR Anguar Form using 'FormGroup' (?)
+      1. FormGroup is a collection of various Editable Form elements inside the HTML 5 Form in Angular HTML Template
+         1. FormGroup
+            1. Contains FormControlsCollection
+               1. Each element in collection is known as 'FormControl'
+                  1. FormControl maps with the public property from the model class
+   2. # @angular/forms package 1. ReactiveFormsModule class for Reactive Forms 2. FormGroup 3. FormControl 4. Validators class 1. static methods 1. required(AbstractConrtol) / requiredTrue(AbstractConrtol) 1. Methods with AbstractControl are invoked w/o parameters 2. min(int)/max(int) 3. minLength(int)/maxLength(int) 4. email(RegEx | string) 5. pattern(RegEx | string)
+
+======================================================================================
+
+Day 3: Exercise
+
+1. Validate ProductId as Unique against the Products Array.
+2. Validate the ProductName for not having Special Character and must start from Upper case character
+3. Make sure that the Controls border become red when it contains an invalid value
+   1. Hint use ngClass
+4. create a Drop-Down Component that contains Radio Buttons for each option.
+
+Angular Tech.
+
+1. UI Reusability
+
+   1. Directives
+      1. UI Requirements
+      2. Functional Requirements
+      3. Properties for input and events for output
+   2. Elements
+      1. Component as Element
+      2. Lit-Elements (Project Polymer)
+
+2. Developing Complex UI Application
+   1. Micro FrontEnd
+
+=====================================================================
+Day 4: Exercise
+
+1. Create a LitElement, that will work as DataGrid with following features
+   1. Expose DataSource property that will accapt JSON Collection
+   2. Generate Column Headers and Rows Dynamically with following
+      1. Multi-Word Columns must have blankSpace e.g. if property is EmpNo, then column must be Emp No.
+   3. Each Row Shold have CheckBox, so selecting row for following operations
+      1. Delete Row having CheckBox Checked
+   4. The Header must have a column for CheckBox, so that when this is checked/unchecked all rows will be checked/unchecked
+2. # Each Column must have sort/reverse facility using Up/Down arrow
+   ==================================================================
+   Angular FUnctionaly Reusability
+3. Model Classes
+   Class Obj =new Class(A(B(C())))
+4. Services
+   1. Class with @Injectable() decorator from @angular/core
+
+=====================================================================
+
+Day 5: Exercise
+
+1. Create three components, the first component has to show list of customers with following properties in table
+   1. CustomerId, CustomerName, City, Email, ContactNumber
+2. The second componeent will show orders by customer with following data properties in table
+   1. OrderId, OrderName, Date, CustomerId, Order Quantity, Amount
+3. The third component that will be a search component with UI as SearchTextBox
+4. The application will behave as follows
+   1. When the customer is selected from customers component the order component will show all orders by customer
+   2. When the customer name is searched from the search Textbox, the customer component will show that customer details and the Orders component will show all orders by thet customer, if the city name is entered in the search textbox then all customers from that ciryt must be displayed in the customers component and all orders for all customers from customer component should be displayed in orders component.
+
+======================================================================
+@angular/common/http
+
+1. HttpClientModule
+   1. Register the 'HttpClient' class in global scope of the current angular application.
+      1. HttpClient class is used to make get/post/put/delete calls to externaly hosted REST APIs
+         1. get<T>/post<T>/put<T>/delete<T>
+            1. T can be, primptive type
+            2. T can be array
+            3. T can be BLOB and ArrayBuffer --> Http 2
+         2. Observable<T> is a response from each http method
+            1. Observable is a stream storage (?) from rxjs lib.
+               1. The storage where the async response is stored that is received from the REST API
+      2. The HttpClient is a Singleton object registered by HttpClientModule class
+
+======================================================================
+1. Reusable Functional Attributes for UI
+   1. Custom Attribute Directives
+   2. Properties for the Custom Directive
+   3. Logic 
+   4. Events those who will activate the directive
+2. Exercise Day 6
+   1. Create a custom directive that will be used to check the unique value of the ProductId by making the http call to the Product REST API. If the ProductId is already available then it should change the border of the TextBox to red.
+      1. Hint: Use DI of Service in the Directive
+      2. Hint: Trap the (blur) event on the TextBox in the directive 
+     
+3. Developing the Build for CSS and Custom JavaScript
+4. State Management for Front-End
+5. Testing 
+
+
+
+
+
+
+
+
+
+
+
+
